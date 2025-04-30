@@ -60,3 +60,6 @@ Set-PSReadLineKeyHandler -Chord Ctrl+Shift+Delete -ScriptBlock {
 	}
 	[Microsoft.PowerShell.PSConsoleReadLine]::DeleteLine()
 }
+
+# zoxide Initialization
+Invoke-Expression (& { (zoxide init powershell | Out-String) })
