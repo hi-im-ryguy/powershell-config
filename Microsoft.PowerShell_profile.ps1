@@ -9,17 +9,15 @@ else
 	Set-PSReadLineOption -PredictionSource History
 }
 
-New-Alias Goto Set-Location
-
 $ProfileDirectory = Split-Path -Path (gci $profile)
 gci "$ProfileDirectory\my_custom_aliases.ps1" | foreach-object { . $_ }
+
+Set-PSReadLineOption -PredictionSource History
+Set-PSReadLineOption -PredictionViewStyle ListView
 
 Set-PSReadLineKeyHandler -Chord Tab     -Function Complete
 Set-PSReadLineKeyHandler -Key UpArrow   -Function HistorySearchBackward
 Set-PSReadLineKeyHandler -Key DownArrow -Function HistorySearchForward
-
-Set-PSReadLineOption -PredictionSource History
-Set-PSReadLineOption -PredictionViewStyle ListView
 
 Set-PSReadLineOption -EditMode Windows
 
