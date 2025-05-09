@@ -34,3 +34,7 @@ function gittree {
         cls
     }
 }
+
+function git_stash_but_keep {
+    git stash store $(git stash create) -m "Stash commit message"
+}
