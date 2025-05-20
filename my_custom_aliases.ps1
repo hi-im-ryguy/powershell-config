@@ -1,7 +1,26 @@
 # New-Alias cdmachinestatedatabase Set-Location .\Documents\Projects\Git\machine_state_database
 
 function cdmachinestatedatabase { set-location "$HOME\Documents\Projects\Git\machine_state_database" }
+
 function cdmsdbcsv { set-location "$HOME\Documents\Projects\Git\tae\msdb_csv" }
+
+function cdjira {
+    [CmdletBinding()]
+    Param ([string]$arg1 = "")
+
+    $jiraBasePath = Join-Path -Path $env:USERPROFILE -ChildPath "Documents\JIRA"
+
+    # FEATURE
+    # When providing a $arg1 that doesn't exist yet (a folder for your arg doesn't exist)
+    if ($arg1 -eq "") {
+# create the folder for the user.
+        Set-Location -Path $jiraBasePath
+    } else {
+        $fusionPath = Join-Path -Path $jiraBasePath -ChildPath "FUSION-$arg1"
+        Set-Location -Path $fusionPath
+    }
+}
+
 function sortcsv {
     [CmdletBinding()]
     Param ([switch]$d)
