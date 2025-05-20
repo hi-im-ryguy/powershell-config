@@ -17,6 +17,7 @@ function mergecsv {
     python "$HOME\Documents\Projects\Git\machine_state_database\django\msdb\management\csv_updates\merge_csv.py"
 }
 
+# Copy Current Path
 function ccp {
     $current_working_directory = (pwd).Path
     Set-Clipboard $current_working_directory
@@ -30,7 +31,7 @@ function get_last_FUSION {
 function gittree {
     while($true) {
         git log --graph --pretty=oneline --abbrev-commit --all
-        Start-Sleep -Seconds 2
+        Start-Sleep -Milliseconds 800
         cls
     }
 }
