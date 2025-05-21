@@ -1,17 +1,5 @@
 $versionMinimum = [Version]'7.1.999'
 
-if (($host.Name -eq 'ConsoleHost') -and ($PSVersionTable.PSVersion -ge $versionMinimum))
-{
-	Set-PSReadLineOption -PredictionSource HistoryAndPlugin
-}
-else
-{
-	Set-PSReadLineOption -PredictionSource History
-}
-
-$ProfileDirectory = Split-Path -Path (gci $profile)
-gci "$ProfileDirectory\my_custom_aliases.ps1" | foreach-object { . $_ }
-
 Set-PSReadLineOption -PredictionSource History
 Set-PSReadLineOption -PredictionViewStyle ListView
 
