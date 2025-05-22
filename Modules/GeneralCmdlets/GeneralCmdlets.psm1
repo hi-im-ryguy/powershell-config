@@ -16,3 +16,7 @@ function gittree {
 function git_stash_but_keep {
     git stash store $(git stash create) -m "Stash commit message"
 }
+
+function delete_shada_file {
+    rm ~/AppData/Local/nvim-data/shada/
+}
