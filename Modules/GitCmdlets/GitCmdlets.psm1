@@ -13,6 +13,11 @@ function gfb {
     git branch -f $branch_name
 }
 
+function gcp {
+    Param([string]$sha_id)
+    git cherry-pick $sha_id
+}
+
 function gittree {
     while($true) {
         git log --graph --pretty=oneline --abbrev-commit --all
