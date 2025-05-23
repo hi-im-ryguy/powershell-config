@@ -18,6 +18,14 @@ function gcp {
     git cherry-pick $sha_id
 }
 
+function gp {
+    git push
+}
+
+function gfp {
+    git push --force
+}
+
 function gittree {
     while($true) {
         git log --graph --pretty=oneline --abbrev-commit --all
