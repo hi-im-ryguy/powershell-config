@@ -3,12 +3,12 @@ function gco {
     git checkout $branch_name
 }
 
-function gcb {
+function gb {
     Param([string]$branch_name)
     git branch $branch_name
 }
 
-function gcfb {
+function gfb {
     Param([string]$branch_name)
     git branch -f $branch_name
 }
