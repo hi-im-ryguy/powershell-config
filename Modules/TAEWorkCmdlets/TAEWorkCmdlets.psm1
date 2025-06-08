@@ -30,13 +30,20 @@ function cdjira {
 
 function sortcsv {
     [CmdletBinding()]
-    Param ([switch]$d)
+    Param ([switch]$d, [string]$filepath)
+    Write-Host "ayy"
+    $sort_csv_file_path = "$HOME\Documents\Projects\Git\machine_state_database\django\msdb\management\csv_updates\sort_csv.py"
+    $options = @()
     if ($d) {
-        python "$HOME\Documents\Projects\Git\machine_state_database\django\msdb\management\csv_updates\sort_csv.py" -d
+        $options += "-d"
     }
-    else {
-        python "$HOME\Documents\Projects\Git\machine_state_database\django\msdb\management\csv_updates\sort_csv.py"
+    if ($filepath) {
+        $options += "--input_file $filepath"
     }
+    $options = ($options -split " ")
+    $expression = "python $sort_csv_file_path $options"
+    echo "Final expression: $expression"
+    Invoke-Expression $expression
 }
 
 function mergecsv {

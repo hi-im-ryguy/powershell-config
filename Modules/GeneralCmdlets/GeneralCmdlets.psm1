@@ -14,8 +14,12 @@ function delete_shada_file {
 }
 
 function restart_window_switcher {
-    $id = (Get-Process window-switcher)[0].Id
+    try {
+        $id = (Get-Process window-switcher)[0].Id
+        Stop-Process -Id $id
+    } catch {
+        "No window-switcher process found."
+    }
     $path_to_window_switcher = "~\AppData\Local\Programs\window-switcher\window-switcher.exe"
-    Stop-Process -Id $id
     Start-Process $path_to_window_switcher
 }

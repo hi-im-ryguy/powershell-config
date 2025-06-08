@@ -33,3 +33,8 @@ function gittree {
         cls
     }
 }
+
+function git_commit_history_of_file {
+    Param([string]$filepath)
+    git log --follow --patch -- $filepath
+}
