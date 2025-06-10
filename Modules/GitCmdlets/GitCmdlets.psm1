@@ -38,3 +38,13 @@ function git_commit_history_of_file {
     Param([string]$filepath)
     git log --follow --patch -- $filepath
 }
+
+function git_changes_since_base {
+    Param([string] $base)
+    if ($base -eq "") {
+        Write_Host "Please provide the Git node."
+        return
+    }
+
+    git diff $(git merge-base --fork-point $base)
+}
