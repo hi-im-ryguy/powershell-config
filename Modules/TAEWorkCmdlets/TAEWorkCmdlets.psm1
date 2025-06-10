@@ -15,17 +15,22 @@ function cdjira {
     [CmdletBinding()]
     Param ([string]$arg1 = "")
 
-    $jiraBasePath = Join-Path -Path $env:USERPROFILE -ChildPath "Documents\JIRA"
+    $JiraBasePath = Join-Path -Path $env:USERPROFILE -ChildPath "Documents\JIRA"
 
-    # FEATURE
-    # When providing a $arg1 that doesn't exist yet (a folder for your arg doesn't exist)
     if ($arg1 -eq "") {
-# create the folder for the user.
-        Set-Location -Path $jiraBasePath
-    } else {
-        $fusionPath = Join-Path -Path $jiraBasePath -ChildPath "FUSION-$arg1"
-        Set-Location -Path $fusionPath
+        Set-Location -Path $JiraBasePath
     }
+
+    $ChildPath = "FUSION-$arg1"
+    $FusionPath = Join-Path -Path $JiraBasePath -ChildPath $ChildPath
+    Write-Host "Fusion Path: $FusionPath"
+
+    if (!(Test-Path -Path $FusionPath)) {
+        Write-Host "$ChildPath directory does not exists. Creating one..."
+        New-Item -ItemType Directory -Path $FusionPath
+    }
+
+    Set-Location -Path $FusionPath
 }
 
 function sortcsv {
