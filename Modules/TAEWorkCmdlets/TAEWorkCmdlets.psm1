@@ -19,6 +19,7 @@ function cdjira {
 
     if ($arg1 -eq "") {
         Set-Location -Path $JiraBasePath
+        return
     }
 
     $ChildPath = "FUSION-$arg1"
