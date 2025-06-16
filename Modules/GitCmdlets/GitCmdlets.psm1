@@ -48,3 +48,12 @@ function git_changes_since_base {
 
     git diff $(git merge-base --fork-point $base)
 }
+
+function git_delete_stash_by_id {
+    Param([int]$id)
+    if ($id -eq "") {
+        Write-Host "Please provide a stash id."
+        return
+    }
+    git stash drop "stash@{$id}"
+}
