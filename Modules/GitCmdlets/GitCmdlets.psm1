@@ -49,6 +49,11 @@ function git_changes_since_base {
     git diff $(git merge-base --fork-point $base)
 }
 
+function git_changes_since_last_commit_for_this_file {
+    Param([string] $filepath)
+    git diff HEAD~1 $filepath
+}
+
 function git_delete_stash_by_id {
     Param([int]$id)
     if ($id -eq "") {
